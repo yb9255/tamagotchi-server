@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 
 const profileSchema = mongoose.Schema({
-  name: String,
-  description: String,
+  name: {
+    type: String,
+    default: null,
+  },
+  description: {
+    type: String,
+    default: null,
+  },
 });
 
 const UserSchema = mongoose.Schema({
@@ -11,6 +17,7 @@ const UserSchema = mongoose.Schema({
     require: true,
     unique: true,
   },
+  picture: String,
   state: {
     type: String,
     default: 'INIT',
@@ -36,6 +43,10 @@ const UserSchema = mongoose.Schema({
     default: -1,
   },
   exp: {
+    type: Number,
+    default: -1,
+  },
+  happiness: {
     type: Number,
     default: -1,
   },
