@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 
-const profileSchema = mongoose.Schema({
-  name: String,
-  description: String,
-});
-
 const UserSchema = mongoose.Schema({
   email: {
     type: String,
     require: true,
     unique: true,
   },
+  picture: String,
   state: {
     type: String,
     default: 'INIT',
@@ -39,9 +35,17 @@ const UserSchema = mongoose.Schema({
     type: Number,
     default: -1,
   },
-  profile: {
-    type: profileSchema,
-    deafult: null,
+  happiness: {
+    type: Number,
+    default: -1,
+  },
+  profileName: {
+    type: String,
+    default: null,
+  },
+  profileDescription: {
+    type: String,
+    default: null,
   },
 });
 
