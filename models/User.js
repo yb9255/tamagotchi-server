@@ -1,16 +1,5 @@
 const mongoose = require('mongoose');
 
-const profileSchema = mongoose.Schema({
-  name: {
-    type: String,
-    default: null,
-  },
-  description: {
-    type: String,
-    default: null,
-  },
-});
-
 const UserSchema = mongoose.Schema({
   email: {
     type: String,
@@ -50,9 +39,13 @@ const UserSchema = mongoose.Schema({
     type: Number,
     default: -1,
   },
-  profile: {
-    type: profileSchema,
-    deafult: null,
+  profileName: {
+    type: String,
+    default: null,
+  },
+  profileDescription: {
+    type: String,
+    default: null,
   },
 });
 
