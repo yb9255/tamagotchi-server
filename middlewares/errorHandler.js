@@ -1,4 +1,8 @@
-const { INVALID_TOKEN, UNAUTHORIZED } = require('../constants/errorConstants');
+const {
+  INVALID_TOKEN,
+  UNAUTHORIZED,
+  TOKEN_DOES_NOT_EXIST,
+} = require('../constants/errorConstants');
 
 function errorHandler(err, req, res, next) {
   let error = { ...err, name: err.name, message: err.message };
@@ -19,6 +23,12 @@ function errorHandler(err, req, res, next) {
         ok: false,
         status: 400,
         message: '인증되지 않은 사용자입니다.',
+      });
+    case TOKEN_DOES_NOT_EXIST:
+      return res.json({
+        ok: false,
+        status: 400,
+        message: '로그인 토큰이 존재하지 않습니다.',
       });
   }
 
