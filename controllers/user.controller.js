@@ -20,7 +20,6 @@ const postLogin = asyncCatcher(async (req, res, next) => {
   }
 
   const serverToken = createServerToken(targetUser._id);
-  console.log(serverToken);
 
   res.cookie('server_token', serverToken, { sameSite: 'none', secure: true });
 
