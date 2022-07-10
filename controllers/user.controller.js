@@ -64,9 +64,9 @@ const getUserInformation = asyncCatcher(async (req, res, next) => {
 
 const patchUserInformation = asyncCatcher(async (req, res, next) => {
   const { userId } = req;
-  console.log(userId);
   const newInformation = req.body.newInformation;
-  const targetUser = await User.findByIdAndUpdate(userId, {
+
+  await User.findByIdAndUpdate(userId, {
     state: newInformation.state,
     growth: newInformation.growth,
     fun: newInformation.fun,
@@ -78,8 +78,6 @@ const patchUserInformation = asyncCatcher(async (req, res, next) => {
     profileName: newInformation.profileName,
     profileDescription: newInformation.profileDescription,
   });
-
-  console.log(newInformation, targetUser);
 
   res.json({
     ok: true,
