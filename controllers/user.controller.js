@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const asyncCatcher = require('../utils/asyncCatcher');
 const { createServerToken } = require('../services/userService');
-const { NONAME } = require('dns');
 
 const postLogin = asyncCatcher(async (req, res, next) => {
   const { userInfo } = req;
@@ -63,7 +62,31 @@ const getUserInformation = asyncCatcher(async (req, res, next) => {
   });
 });
 
+const patchUserInformation = asyncCatcher(async (req, res, next) => {
+  const { userId } = req;
+  const newInformation = req.body.newInformation;
+
+  await User.findByIdAndUpdate(userId, {
+    state: newInformation.state,
+    growth: newInformation.growth,
+    fun: newInformation.fun,
+    hunger: newInformation.hunger,
+    birthCount: newInformation.birthCount,
+    tiredness: newInformation.tiredness,
+    exp: newInformation.exp,
+    happiness: newInformation.happiness,
+    profileName: newInformation.profileName,
+    profileDescription: newInformation.profileDescription,
+  });
+
+  res.json({
+    ok: true,
+    status: 200,
+  });
+});
+
 module.exports = {
   postLogin,
   getUserInformation,
+  patchUserInformation,
 };
