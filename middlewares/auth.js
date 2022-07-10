@@ -1,8 +1,13 @@
 const admin = require('../firebase/firebase-config');
 const CustomError = require('../utils/CustomError');
-
 const asyncCatcher = require('../utils/asyncCatcher');
-const { INVALID_TOKEN, UNAUTHORIZED } = require('../constants/errorConstants');
+const jwt = require('jsonwebtoken');
+
+const {
+  INVALID_TOKEN,
+  UNAUTHORIZED,
+  TOKEN_DOES_NOT_EXIST,
+} = require('../constants/errorConstants');
 
 const verifyToken = asyncCatcher(async (req, res, next) => {
   const [bearer, token] = req.body.accessToken.split(' ');
@@ -22,6 +27,19 @@ const verifyToken = asyncCatcher(async (req, res, next) => {
   next();
 });
 
+const isLoggedIn = asyncCatcher(async (req, res, next) => {
+  if (!req.cookies['server_token']) {
+    return next(new Error(TOKEN_DOES_NOT_EXIST));
+  }
+
+  const userIdToken = req.cookies['server_token'];
+  const userId = jwt.verify(userIdToken, process.env.TOKEN_SECRET);
+  req.userId = userId;
+
+  next();
+});
+
 module.exports = {
   verifyToken,
+  isLoggedIn,
 };
