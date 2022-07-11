@@ -58,6 +58,8 @@ const getUserInformation = asyncCatcher(async (req, res, next) => {
       tiredness: targetUser.tiredness,
       exp: targetUser.exp,
       happiness: targetUser.happiness,
+      profileName: targetUser.profileName,
+      profileDescription: targetUser.profileDescription,
     },
   });
 });
@@ -85,8 +87,24 @@ const patchUserInformation = asyncCatcher(async (req, res, next) => {
   });
 });
 
+const patchProfile = asyncCatcher(async (req, res, next) => {
+  const { userId } = req;
+  const { profileName, profileDescription } = req.body.newProfile;
+
+  await User.findByIdAndUpdate(userId, {
+    profileName,
+    profileDescription,
+  });
+
+  res.json({
+    ok: true,
+    status: 200,
+  });
+});
+
 module.exports = {
   postLogin,
   getUserInformation,
   patchUserInformation,
+  patchProfile,
 };

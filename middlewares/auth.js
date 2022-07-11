@@ -33,7 +33,7 @@ const isLoggedIn = asyncCatcher(async (req, res, next) => {
   }
 
   const userIdToken = req.cookies['server_token'];
-  console.log(userIdToken);
+
   const userId = jwt.verify(userIdToken, process.env.TOKEN_SECRET);
   req.userId = userId;
 
