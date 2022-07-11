@@ -5,10 +5,10 @@ const {
 } = require('../constants/errorConstants');
 
 function errorHandler(err, req, res, next) {
-  let error = { ...err, name: err.name, message: err.message };
+  let error = { ...err, name: err.name };
 
   if (process.env.ENV === 'development') {
-    console.log(err);
+    console.log(error);
   }
 
   switch (error.name) {

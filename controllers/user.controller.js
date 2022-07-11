@@ -36,6 +36,8 @@ const postLogin = asyncCatcher(async (req, res, next) => {
       tiredness: targetUser.tiredness,
       exp: targetUser.exp,
       happiness: targetUser.happiness,
+      profileName: targetUser.profileName,
+      profileDescription: targetUser.profileDescription,
     },
   });
 });
