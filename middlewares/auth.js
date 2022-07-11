@@ -29,7 +29,7 @@ const verifyToken = asyncCatcher(async (req, res, next) => {
 
 const isLoggedIn = asyncCatcher(async (req, res, next) => {
   if (!req.cookies['server_token']) {
-    return next(new Error(TOKEN_DOES_NOT_EXIST));
+    return next(new CustomError(TOKEN_DOES_NOT_EXIST));
   }
 
   const userIdToken = req.cookies['server_token'];
