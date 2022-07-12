@@ -8,7 +8,7 @@ function errorHandler(err, req, res, next) {
   let error = { ...err, name: err.name };
 
   if (process.env.ENV === 'development') {
-    console.log(error);
+    console.log(err);
   }
 
   switch (error.name) {
