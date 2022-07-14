@@ -32,11 +32,7 @@ app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  res.json({
-    ok: true,
-    status: 200,
-    message: 'welcome',
-  });
+  res.send('welcome!');
 });
 
 app.use('/api/users', userRouter);
