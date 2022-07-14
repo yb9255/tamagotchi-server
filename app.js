@@ -14,7 +14,10 @@ connectDB();
 
 app.use(
   cors({
-    origin: [process.env.ENV === 'development' && 'http://localhost:3000'],
+    origin: [
+      process.env.ENV === 'development' && 'http://localhost:3000',
+      'https://yb-web-tamagotchi.netlify.app/',
+    ],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true,
   }),
