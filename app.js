@@ -3,10 +3,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const userRouter = require('./routes/userRouter');
+const userRouter = require('./src/routes/userRouter');
 
-const { connectDB } = require('./services/db');
-const errorHandler = require('./middlewares/errorHandler');
+const { connectDB } = require('./src/services/db');
+const errorHandler = require('./src/middlewares/errorHandler');
 
 const app = express();
 
@@ -19,14 +19,21 @@ app.use(
     credentials: true,
   }),
 );
+
 app.use(cookieParser());
+
 app.use(
   express.json({
     type: '*/*',
   }),
 );
+
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  res.send('welcome!');
+});
 
 app.use('/api/users', userRouter);
 
