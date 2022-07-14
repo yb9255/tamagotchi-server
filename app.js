@@ -19,14 +19,25 @@ app.use(
     credentials: true,
   }),
 );
+
 app.use(cookieParser());
+
 app.use(
   express.json({
     type: '*/*',
   }),
 );
+
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  res.json({
+    ok: true,
+    status: 200,
+    message: 'welcome',
+  });
+});
 
 app.use('/api/users', userRouter);
 
