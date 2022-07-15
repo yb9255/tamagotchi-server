@@ -1,4 +1,4 @@
-const admin = require('../firebase/firebase-config');
+const admin = require('../firebase/firebaseInit');
 const CustomError = require('../utils/CustomError');
 const asyncCatcher = require('../utils/asyncCatcher');
 const jwt = require('jsonwebtoken');
