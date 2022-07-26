@@ -41,11 +41,11 @@ const UserSchema = mongoose.Schema({
   },
   profileName: {
     type: String,
-    default: null,
+    default: '다마고치의 이름을 정해주세요!',
   },
   profileDescription: {
     type: String,
-    default: null,
+    default: '내 다마고치를 소개하세요!',
   },
 });
 
